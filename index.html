@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Checker - Professional Writing Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container" id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1 class="app-title">
+                        <span class="title-icon">📝</span>
+                        Grammar Checker
+                    </h1>
+                    <span class="app-subtitle">Professional Writing Assistant</span>
+                </div>
+                <div class="header-right">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <span class="theme-icon" id="themeIcon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <div class="toolbar-left">
+                    <button class="btn btn--primary" id="fixAllBtn" disabled>
+                        <span class="btn-icon">✨</span>
+                        Fix All
+                    </button>
+                    <button class="btn btn--secondary" id="clearBtn">
+                        <span class="btn-icon">🗑️</span>
+                        Clear
+                    </button>
+                    <button class="btn btn--secondary" id="exportBtn">
+                        <span class="btn-icon">📤</span>
+                        Export
+                    </button>
+                </div>
+                <div class="toolbar-right">
+                    <div class="stats">
+                        <span class="stat-item">
+                            <span class="stat-label">Words:</span>
+                            <span class="stat-value" id="wordCount">0</span>
+                        </span>
+                        <span class="stat-item">
+                            <span class="stat-label">Characters:</span>
+                            <span class="stat-value" id="charCount">0</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Editor and Error Panel Container -->
+            <div class="editor-container">
+                <!-- Text Editor -->
+                <div class="editor-section">
+                    <div class="editor-wrapper">
+                        <div class="editor-header">
+                            <h3>Your Text</h3>
+                            <div class="loading-indicator" id="loadingIndicator">
+                                <div class="spinner"></div>
+                                <span>Checking grammar...</span>
+                            </div>
+                        </div>
+                        <div class="editor-content">
+                            <div 
+                                class="text-editor" 
+                                id="textEditor" 
+                                contenteditable="true" 
+                                spellcheck="false"
+                                aria-label="Text editor for grammar checking"
+                                placeholder="Start typing your text here..."
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error Panel -->
+                <div class="error-panel" id="errorPanel">
+                    <div class="error-panel-header">
+                        <h3>Issues Found</h3>
+                        <button class="panel-toggle" id="panelToggle" aria-label="Toggle error panel">
+                            <span class="toggle-icon">«</span>
+                        </button>
+                    </div>
+                    
+                    <div class="error-summary">
+                        <div class="error-count grammar-count">
+                            <span class="count-icon">📝</span>
+                            <span class="count-label">Grammar</span>
+                            <span class="count-value" id="grammarCount">0</span>
+                        </div>
+                        <div class="error-count spelling-count">
+                            <span class="count-icon">📖</span>
+                            <span class="count-label">Spelling</span>
+                            <span class="count-value" id="spellingCount">0</span>
+                        </div>
+                        <div class="error-count style-count">
+                            <span class="count-icon">🎨</span>
+                            <span class="count-label">Style</span>
+                            <span class="count-value" id="styleCount">0</span>
+                        </div>
+                    </div>
+
+                    <div class="error-list" id="errorList">
+                        <div class="no-errors" id="noErrors">
+                            <div class="no-errors-icon">✅</div>
+                            <h4>Great Job!</h4>
+                            <p>No grammar issues found in your text.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-item" id="apiStatus">Ready</span>
+            </div>
+            <div class="status-right">
+                <span class="status-item" id="lastCheck">Never checked</span>
+            </div>
+        </div>
+
+        <!-- Suggestion Tooltip -->
+        <div class="suggestion-tooltip" id="suggestionTooltip">
+            <div class="tooltip-header">
+                <span class="tooltip-title">Suggestions</span>
+                <button class="tooltip-close" id="tooltipClose">×</button>
+            </div>
+            <div class="tooltip-content" id="tooltipContent">
+                <!-- Suggestions will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
